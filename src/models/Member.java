@@ -22,6 +22,10 @@ import javax.persistence.Table;
             query = "SELECT COUNT(m) FROM Member AS m"
             ),
     @NamedQuery(
+            name = "checkRegisteredId",
+            query = "SELECT COUNT(m) FROM Member AS m WHERE m.id = :id"
+            ),
+    @NamedQuery(
             name = "checkLoginIdAndPassword",
             query = "SELECT m FROM Member AS m WHERE m.id = :id AND m.password = :pass"
             )
@@ -38,6 +42,9 @@ public class Member {
 
     @Column(name = "password", length = 64, nullable = false)
     private String password;
+
+    @Column(name = "admin_flag", nullable = false)
+    private Integer admin_flag;
 
     @Column(name = "profile", length = 255, nullable = false)
     private String profile;
@@ -70,6 +77,14 @@ public class Member {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getAdmin_flag() {
+        return admin_flag;
+    }
+
+    public void setAdmin_flag(Integer admin_flag) {
+        this.admin_flag = admin_flag;
     }
 
     public String getProfile() {
