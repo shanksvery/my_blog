@@ -11,14 +11,26 @@
         <table id="member_list">
             <tbody>
                 <tr>
-                    <th>氏名</th>
+                    <th>ID</th>
+                    <th>ユーザー名</th>
+                    <th>詳細</th>
                     <th>操作</th>
                 </tr>
                 <c:forEach var="member" items="${members}" varStatus="status">
                     <tr class="row${status.count % 2}">
-                        <td><c:out value="${member.id}" /></td>
+                        <td><c:out value="${member.code}" /></td>
                         <td><c:out value="${member.name}" /></td>
                         <td><c:out value="${member.profile}" /></td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${member.delete_flag == 1}">
+                                    （削除済み）
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="<c:url value='/members/show?id=${member.id}' />">詳細を表示</a>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
 
                     </tr>
                 </c:forEach>
@@ -26,8 +38,8 @@
         </table>
 
         <div id="pagination">
-            （全 ${member_count} 件）<br />
-            <c:forEach var="i" begin="1" end="${((member_count - 1) / 15) + 1}" step="1">
+            （全 ${members_count} 件）<br />
+            <c:forEach var="i" begin="1" end="${((members_count - 1) / 15) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;

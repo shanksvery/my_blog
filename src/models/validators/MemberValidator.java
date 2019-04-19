@@ -9,12 +9,12 @@ import models.Member;
 import utils.DBUtil;
 
 public class MemberValidator {
-    public static List<String> validate(Member m,Boolean id_duplicate_check_flag, Boolean password_check_flag) {
+    public static List<String> validate(Member m, Boolean code_duplicate_check_flag, Boolean password_check_flag) {
         List<String> errors = new ArrayList<String>();
 
-        String id_error = _validateId(m.getId(), id_duplicate_check_flag);
-        if(!id_error.equals("")) {
-            errors.add(id_error);
+        String code_error = _validateCode(m.getCode(), code_duplicate_check_flag);
+        if(!code_error.equals("")) {
+            errors.add(code_error);
         }
 
         String name_error = _validateName(m.getName());
@@ -28,18 +28,18 @@ public class MemberValidator {
         }
         return errors;
     }
-
-    private static String _validateId(Integer id, Boolean id_duplicate_check_flag) {
+    private static String _validateCode(String code, Boolean code_duplicate_check_flag) {
         // 必須入力チェック
-        if(id == null || id.equals("")) {
+        if(code == null || code.equals("")) {
             return "ログインIDを入力してください。";
         }
 
+
         // 既に登録されているIDとの重複チェック
-        if(id_duplicate_check_flag) {
+        if(code_duplicate_check_flag) {
             EntityManager em = DBUtil.createEntityManager();
-            long members_count = (long)em.createNamedQuery("checkRegisteredId", Long.class)
-                                           .setParameter("id", id)
+            long members_count = (long)em.createNamedQuery("checkRegisteredCode", Long.class)
+                                           .setParameter("code", code)
                                              .getSingleResult();
             em.close();
             if(members_count > 0) {

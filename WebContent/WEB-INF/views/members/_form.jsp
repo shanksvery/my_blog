@@ -9,8 +9,8 @@
 
     </div>
 </c:if>
-<label for="id">ログインID</label><br />
-<input type="text" name="id" value="${member.id}" />
+<label for="code">ログインID</label><br />
+<input type="text" name="code" value="${member.code}" />
 <br /><br />
 
 <label for="name">お名前</label><br />

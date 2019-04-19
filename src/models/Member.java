@@ -22,20 +22,23 @@ import javax.persistence.Table;
             query = "SELECT COUNT(m) FROM Member AS m"
             ),
     @NamedQuery(
-            name = "checkRegisteredId",
-            query = "SELECT COUNT(m) FROM Member AS m WHERE m.id = :id"
+            name = "checkRegisteredCode",
+            query = "SELECT COUNT(m) FROM Member AS m WHERE m.code = :code"
             ),
     @NamedQuery(
             name = "checkLoginIdAndPassword",
-            query = "SELECT m FROM Member AS m WHERE m.id = :id AND m.password = :pass"
+            query = "SELECT m FROM Member AS m WHERE m.delete_flag = 0 AND m.code = :code AND m.password = :pass"
             )
 })
 @Entity
 public class Member {
     @Id
-    @Column(name = "id", nullable = false, unique = true)
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "code", nullable = false, unique = true)
+    private String code;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -55,12 +58,23 @@ public class Member {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
+    @Column(name = "delete_flag", nullable = false)
+    private Integer delete_flag;
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
@@ -109,5 +123,13 @@ public class Member {
 
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public Integer getDelete_flag() {
+        return delete_flag;
+    }
+
+    public void setDelete_flag(Integer delete_flag) {
+        this.delete_flag = delete_flag;
     }
 }
