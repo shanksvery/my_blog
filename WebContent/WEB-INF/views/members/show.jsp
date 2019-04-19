@@ -18,6 +18,10 @@
                             <td><c:out value="${member.name}" /></td>
                         </tr>
                         <tr>
+                            <th>プロフィール</th>
+                            <td><c:out value="${member.profile}" /></td>
+                        </tr>
+                        <tr>
                             <th>権限</th>
                             <td>
                                 <c:choose>
