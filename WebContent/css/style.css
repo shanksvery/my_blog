@@ -2,7 +2,7 @@
 
 body {
     color: #333333;
-    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+    font-family: 'Georgia','ヒラギノ角ゴシック','Hiragino Sans',YuGothic,'Yu Gothic',sans-serif;
 }
 
 #header {
@@ -25,6 +25,25 @@ h1 {
 h2 {
     font-size: 36px;
     margin-bottom: 15px;
+  position: relative;
+  padding: 0.25em 1em;
+  border-top: solid 2px black;
+  border-bottom: solid 2px black;
+}
+h2:before, h2:after {
+  content: '';
+  position: absolute;
+  top: -7px;
+  width: 2px;
+  height: -webkit-calc(100% + 14px);
+  height: calc(100% + 14px);
+  background-color: black;
+}
+h2:before {
+  left: 7px;
+}
+h2:after {
+  right: 7px;
 }
 
 li {
@@ -42,9 +61,7 @@ a {
     color: #24738e;
 }
 
-table, tr, th, td {
-    border: 1px solid #cccccc;
-}
+
 
 table {
     width: 100%;
@@ -59,6 +76,7 @@ th {
 td {
     width: 66%;
     padding: 10px 2%;
+  border-collapse:  collapse
 }
 
 button {
@@ -88,12 +106,12 @@ button {
     color: #721c24;
     background-color: #f8d7da;
 }
-table#employee_list th {
+table#member_list th {
     width: 30%;
     padding: 10px 2%;
 }
 
-table#employee_list td {
+table#member_list td {
     width: 29%;
     padding: 10px 2%;
 }
@@ -114,7 +132,7 @@ select {
     display: inline-block;
 }
 
-#employee_name {
+#member_name {
     color: #cccccc;
     width: 36%;
     padding-right: 3%;
@@ -157,7 +175,7 @@ table#member_list th {
     padding: 10px 2%;
 }
 
-table#employee_list td {
+table#member_list td {
     width: 29%;
     padding: 10px 2%;
 }
@@ -170,4 +188,45 @@ tr.row0 {
 }
 select {
     height: 30px;
+}
+table#report_list th {
+    font-weight: bold;
+    padding: 10px 2%;
+}
+
+table#report_list .report_name {
+    width: 20%;
+    padding: 10px 2%;
+}
+table#report_list .report_date {
+    width: 20%;
+}
+
+table#report_list .report_title {
+    width: 37%;
+}
+
+table#report_list .report_action {
+    width: 13%;
+}
+pre {
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+h3 {
+  color: #837edd;/*文字色*/
+  /*線の種類（点線）2px 線色*/
+  border-bottom: dashed 2px #837edd;
+}
+table {
+    border-collapse:  collapse; /* セルの線を重ねる */
+}
+
+tr:nth-child(odd) {
+    background-color:  #e6e6fa;    /* 背景色指定 */
+}
+
+th,td {
+    padding: 5px 10px;          /* 余白指定 */
 }

@@ -11,14 +11,27 @@
     <body>
         <div id="wrapper">
             <div id="header">
-                <h1>Trip Report</h1>
+                <div id="header_menu">
+                    <h1><a href="<c:url value='/' />">Trip Report</a></h1>&nbsp;&nbsp;&nbsp;
+                    <c:if test="${sessionScope.login_member != null}">
+                        <c:if test="${sessionScope.login_member.admin_flag == 1}">
+                            <a href="<c:url value='/members/index' />">会員一覧</a>&nbsp;
+                        </c:if>
+                        <a href="<c:url value='/reports/index' />">あなたの記事</a>&nbsp;
+                    </c:if>
+                </div>
+                <c:if test="${sessionScope.login_member != null}">
+                    <div id="member_name">
+                        <c:out value="${sessionScope.login_member.name}" />&nbsp;さん&nbsp;&nbsp;&nbsp;
+                        <a href="<c:url value='/logout' />">ログアウト</a>
+                    </div>
+                </c:if>
             </div>
             <div id="content">
-                 ${param.content}
+                ${param.content}
             </div>
             <div id="footer">
-              Web Creater<br />
-              Ayaka Hikichi.
+                by Ayaka Hikichi.
             </div>
         </div>
     </body>
